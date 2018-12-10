@@ -111,7 +111,7 @@ const createQuickReplies = (data) => {
 const sendMessage = async (chatId, text, quickReplies) => {
     await axios.get(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`, {
         params: {
-            chatId,
+            chat_id: chatId,
             text,
             reply_markup: JSON.stringify(quickReplies)
         }
