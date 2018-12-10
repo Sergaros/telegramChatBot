@@ -30,7 +30,7 @@ const addReminder = async (chat_id, parameters) => {
 
 	await saveReminder(chat_id, parameters);
 
-	return `Reminder "${parameters.name}" - ${moment(parameters.date).format(constants.DATE_TIME_FORMAT)} was created!`;
+	return `Reminder "${parameters.name}" - ${moment(parameters.date).add(2, 'hours').format(constants.DATE_TIME_FORMAT)} was created!`;
 };
 
 const getReminder = async (chat_id, parameters) => {
@@ -43,7 +43,7 @@ const getReminder = async (chat_id, parameters) => {
 	for(let i = 0; i < reminders.length; i++) {
 		const item = reminders[i];
 		const date = item.date;
-		title+= `${i+1}) "${item.name}" - ${moment(item.date).format(constants.DATE_TIME_FORMAT)} \n`;
+		title+= `${i+1}) "${item.name}" - ${moment(item.date).add(2, 'hours').format(constants.DATE_TIME_FORMAT)} \n`;
 	}
 
 	if(reminders.length === 0) {
