@@ -4,8 +4,6 @@ const constants = require('./constants');
 const moment = require('moment');
 const axios = require('axios');
 
-const config = require('../config');
-
 // Parse chatId from webhook request
 const parseChatId = (data) => {
     return data.queryResult.outputContexts.length ?

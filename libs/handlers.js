@@ -17,9 +17,11 @@ const saveReminder = async (chatId, parameters) => {
 
     const reminder = await remind.save();
 
-    /*if (helpers.minutesTo(reminder.date) <= 1) {
+    if (helpers.minutesTo(reminder.date) <= 1 &&
+		!reminderService.tasksQueue.has(reminder._id)) {
+
         reminderService.run(reminder);
-    }*/
+    }
 };
 
 

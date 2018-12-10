@@ -1,7 +1,6 @@
 
 
 const mongoose = require('mongoose');
-const config = require('../config');
 
 //Mongoose.Promise = Promise;
 
