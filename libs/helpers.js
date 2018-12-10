@@ -9,7 +9,7 @@ const config = require('../config');
 // Parse chatId from webhook request
 const parseChatId = (data) => {
     return data.queryResult.outputContexts.length ?
-	  data.queryResult.outputContexts[data.queryResult.outputContexts.length - 1].parameters.telegram_chatId : 0;
+	  data.queryResult.outputContexts[data.queryResult.outputContexts.length - 1].parameters.telegram_chat_id : 0;
 };
 
 // Parse date from webhook request
