@@ -3,7 +3,6 @@
 const express = require('express');
 const moment = require('moment');
 const bodyParser = require('body-parser');
-const basicAuth = require('express-basic-auth');
 
 // connect to db
 const mongoose = require('./libs/mongoose');
