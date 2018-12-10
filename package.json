@@ -1,0 +1,28 @@
+{
+  "name": "telegrambot",
+  "version": "1.0.0",
+  "description": "Simple telegram bot for reminders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node ./index.js"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "Dialogflow"
+  ],
+  "author": "Sergej",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.15",
+    "node-cron": "^2.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
