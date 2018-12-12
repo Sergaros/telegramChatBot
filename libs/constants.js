@@ -14,13 +14,13 @@ const NOT_UNDERSTAND = 'Sorry, I didn\'t get that. Can you rephrase?';
 const DATE_TIME_FORMAT = 'YYYY/MM/DD HH:mm';
 
 module.exports = {
-    ACTION_ADD,
-    ACTION_GET,
-    ACTION_REMOVE,
-    ACTION_RECIEVED,
-    CONFIRM,
-    SNOOZE,
-    NOT_UNDERSTAND,
-    DONE,
-    DATE_TIME_FORMAT
+  ACTION_ADD,
+  ACTION_GET,
+  ACTION_REMOVE,
+  ACTION_RECIEVED,
+  CONFIRM,
+  SNOOZE,
+  NOT_UNDERSTAND,
+  DONE,
+  DATE_TIME_FORMAT
 };

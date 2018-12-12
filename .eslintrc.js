@@ -109,7 +109,7 @@ module.exports =
         "eol-last": ["error", "always"],
         "func-call-spacing": ["error", "never"],
         "func-names": ["error", "never"],
-        "indent": ["error", 4],
+        "indent": ["error", 2],
         "key-spacing": ["error", { "beforeColon": false }],
         "keyword-spacing": ["error", { "before": true }],
         "lines-around-comment": ["error", { "beforeBlockComment": true }],

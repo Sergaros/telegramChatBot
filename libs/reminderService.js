@@ -11,68 +11,83 @@ const currentReminder = new Map();
 
 // Run reminder task
 const run = async ({ _id, chatId, name, date }) => {
+  try {
     const delay = date.getTime() - Date.now();
 
     if (delay < 0) {
-        // Remove expired reminder from db
-        await Remind.deleteOne({ _id });
+      // Remove expired reminder from db
+      await Remind.deleteOne({ _id });
 
-        return;
+      return;
     }
 
     const task = setTimeout(async () => {
-        // Save current reminder
-        currentReminder.set(chatId, name);
+      // Save current reminder
+      currentReminder.set(chatId, name);
 
-        // Send message to telegram
-        const quickReplies = helpers.createQuickReplies([{ text: 'confirm',
-            data: 'confirm' },
-        { text: 'snooze',
-            data: 'snooze' }]);
+      // Send message to telegram
+      const quickReplies = helpers.createQuickReplies([{ text: 'confirm',
+        data: 'confirm' },
+      { text: 'snooze',
+        data: 'snooze' }]);
 
-        await helpers.sendMessage(chatId, `You have new reminder - \n "${name}"`, quickReplies);
+      await helpers.sendMessage(chatId, `You have new reminder - \n "${name}"`, quickReplies);
 
-        // Remove reminder from db
-        await Remind.deleteOne({ _id });
+      // Remove reminder from db
+      await Remind.deleteOne({ _id });
 
-        //Remove timerId from queue
-        clearTimeout(task);
+      //Remove timerId from queue
+      clearTimeout(task);
 
     }, delay);
 
     tasksQueue.set(_id.toString(), task);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+
 };
 
 // Run all reminders for current hour
 const runHourReminders = async () => {
+  try {
     const startTime = moment();
     const endTime = moment().add(1, 'minute');
 
     const reminders = await Remind.find({
-        date: {
-            $gte: startTime,
-            $lt: endTime
-        }
+      date: {
+        $gte: startTime,
+        $lt: endTime
+      }
     });
 
     // Run all reminders for current hour
     for (const reminder of reminders) {
-        run(reminder);
+      await run(reminder);
     }
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+
 };
 
 // Run main reminder check task
 const start = async () => {
+  try {
     runHourReminders();
     // Check available tasks every minute
     cron.schedule('* * * * *', async () => {
-        await runHourReminders();
+      await runHourReminders();
     });
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+
 };
 
 module.exports = {
-    start,
-    run,
-    tasksQueue,
-    currentReminder
+  start,
+  run,
+  tasksQueue,
+  currentReminder
 };
